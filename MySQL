@@ -1,0 +1,309 @@
+#First, make sure that you acces MySQL using the command line
+mysql -u root -p
+
+#First create the main database and named it imdb
+CREATE DATABASE imdb;
+
+#Tell the mysql to use that database
+USE imdb;
+
+#Create the movie table
+CREATE TABLE movie (
+movie_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+movie_title LONGTEXT NOT NULL, 
+movie_earning DECIMAL(10,2) UNSIGNED NOT NULL DEFAULT 0.0,
+released_date VARCHAR(45) NOT NULL,
+released_year INT UNSIGNED NOT NULL,
+month_released TEXT NOT NULL,
+month_number INT UNSIGNED NOT NULL,
+quarter_number INT UNSIGNED NOT NULL,
+rated TEXT NOT NULL,
+run_time DECIMAL(8,2) UNSIGNED NOT NULL DEFAULT 0.0,
+movie_metascore DECIMAL(8,2) UNSIGNED NOT NULL DEFAULT 0.0,
+imdb_rating DECIMAL(8,2) UNSIGNED NOT NULL DEFAULT 0.0,
+imdb_voting FLOAT(25,2) UNSIGNED NOT NULL DEFAULT 0.0,
+awards VARCHAR(45) NOT NULL,
+imdbid_orig VARCHAR(45) NOT NULL,
+PRIMARY KEY (movie_id)
+);
+
+#Create actor table
+CREATE TABLE actor (
+actor_id INT UNSIGNED UNSIGNED NOT NULL AUTO_INCREMENT,
+actor_1 VARCHAR(45) NOT NULL,
+actor_2 VARCHAR(45) NOT NULL,
+actor_3 VARCHAR(45) NOT NULL,
+actor_4 VARCHAR(45) NOT NULL,
+PRIMARY KEY (actor_id)
+);
+
+#Create movie_actor table
+CREATE TABLE movie_actor (
+movie_actor_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+movie_id INT UNSIGNED NOT NULL,
+actor_id iNT UNSIGNED NOT NULL,
+PRIMARY KEY (movie_actor_id),
+FOREIGN KEY (movie_id) REFERENCES movie (movie_id)
+ON DELETE NO ACTION ON UPDATE NO ACTION,
+FOREIGN KEY (actor_id) REFERENCES actor (actor_id)
+ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE = INNODB;
+
+#Create director table
+CREATE TABLE director (
+director_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+director_1 VARCHAR(45) NOT NULL,
+director_2 VARCHAR(45) NOT NULL,
+director_3 VARCHAR(45) NOT NULL,
+director_4 VARCHAR(45) NOT NULL,
+director_5 VARCHAR(45) NOT NULL,
+director_6 VARCHAR(45) NOT NULL,
+director_7 VARCHAR(45) NOT NULL,
+director_8 VARCHAR(45) NOT NULL,
+director_9 VARCHAR(45) NOT NULL,
+director_10 VARCHAR(45) NOT NULL,
+director_11 VARCHAR(45) NOT NULL,
+director_12 VARCHAR(45) NOT NULL,
+director_13 VARCHAR(45) NOT NULL,
+director_14 VARCHAR(45) NOT NULL,
+director_15 VARCHAR(45) NOT NULL,
+director_16 VARCHAR(45) NOT NULL,
+director_17 VARCHAR(45) NOT NULL,
+director_18 VARCHAR(45) NOT NULL,
+director_19 VARCHAR(45) NOT NULL,
+director_20 VARCHAR(45) NOT NULL,
+director_21 VARCHAR(45) NOT NULL,
+director_22 VARCHAR(45) NOT NULL,
+PRIMARY KEY (director_id)
+);
+
+#Create movie_director table
+CREATE TABLE movie_director (
+movie_director_id iNT UNSIGNED NOT NULL AUTO_INCREMENT,
+movie_id INT UNSIGNED NOT NULL,
+director_id INT UNSIGNED NOT NULL,
+PRIMARY KEY (movie_director_id),
+FOREIGN KEY (movie_id) REFERENCES movie (movie_id)
+ON DELETE NO ACTION ON UPDATE NO ACTION,
+FOREIGN KEY (director_id) REFERENCES director (director_id)
+ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE = INNODB;
+
+#Create writer table
+CREATE TABLE writer (
+writer_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+writer_1 VARCHAR(45) NOT NULL,
+writer_2 VARCHAR(45) NOT NULL,
+writer_3 VARCHAR(45) NOT NULL,
+writer_4 VARCHAR(45) NOT NULL,
+writer_5 VARCHAR(45) NOT NULL,
+writer_6 VARCHAR(45) NOT NULL,
+writer_7 VARCHAR(45) NOT NULL,
+writer_8 VARCHAR(45) NOT NULL,
+writer_9 VARCHAR(45) NOT NULL,
+writer_10 VARCHAR(45) NOT NULL,
+writer_11 VARCHAR(45) NOT NULL,
+writer_12 VARCHAR(45) NOT NULL,
+writer_13 VARCHAR(45) NOT NULL,
+writer_14 VARCHAR(45) NOT NULL,
+writer_15 VARCHAR(45) NOT NULL,
+writer_16 VARCHAR(45) NOT NULL,
+writer_17 VARCHAR(45) NOT NULL,
+writer_18 VARCHAR(45) NOT NULL,
+writer_19 VARCHAR(45) NOT NULL,
+writer_20 VARCHAR(45) NOT NULL,
+writer_21 VARCHAR(45) NOT NULL,
+writer_22 VARCHAR(45) NOT NULL,
+writer_23 VARCHAR(45) NOT NULL,
+writer_24 VARCHAR(45) NOT NULL,
+writer_25 VARCHAR(45) NOT NULL,
+writer_26 VARCHAR(45) NOT NULL,
+writer_27 VARCHAR(45) NOT NULL,
+writer_28 VARCHAR(45) NOT NULL,
+writer_29 VARCHAR(45) NOT NULL,
+writer_30 VARCHAR(45) NOT NULL,
+writer_31 VARCHAR(45) NOT NULL,
+PRIMARY KEY (writer_id)
+);
+
+#Create movie_writer table
+CREATE TABLE movie_writer (
+movie_writer_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+movie_id INT UNSIGNED NOT NULL,
+writer_id INT UNSIGNED NOT NULL,
+PRIMARY KEY (movie_writer_id),
+FOREIGN KEY (movie_id) REFERENCES movie (movie_id)
+ON DELETE NO ACTION ON UPDATE NO ACTION, 
+FOREIGN KEY (writer_id) REFERENCES writer (writer_id)
+ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE = INNODB;
+
+#Create genre table
+CREATE TABLE genre (
+genre_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+genre_1 VARCHAR(45) NOT NULL,
+genre_2 VARCHAR(45) NOT NULL,
+genre_3 VARCHAR(45) NOT NULL,
+genre_4 VARCHAR(45) NOT NULL,
+PRIMARY KEY (genre_id)
+);
+
+#CREATE movie_genre table
+CREATE TABLE movie_genre (
+movie_genre_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+movie_id INT UNSIGNED NOT NULL,
+genre_id INT UNSIGNED NOT NULL,
+PRIMARY KEY (movie_genre_id),
+FOREIGN KEY (movie_id) REFERENCES movie (movie_id)
+ON DELETE NO ACTION ON UPDATE NO ACTION,
+FOREIGN KEY (genre_id) REFERENCES genre (genre_id)
+ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE = INNODB;
+
+#Create country table
+CREATE TABLE country (
+country_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+country_1 VARCHAR(45) NOT NULL,
+country_2 VARCHAR(45) NOT NULL,
+country_3 VARCHAR(45) NOT NULL,
+country_4 VARCHAR(45) NOT NULL,
+country_5 VARCHAR(45) NOT NULL,
+country_6 VARCHAR(45) NOT NULL,
+country_7 VARCHAR(45) NOT NULL,
+country_8 VARCHAR(45) NOT NULL,
+country_9 VARCHAR(45) NOT NULL,
+country_10 VARCHAR(45) NOT NULL,
+country_11 VARCHAR(45) NOT NULL,
+country_12 VARCHAR(45) NOT NULL,
+country_13 VARCHAR(45) NOT NULL,
+PRIMARY KEY (country_id)
+);
+
+
+#Create movie_country table 
+CREATE TABLE movie_country (
+movie_country_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+movie_id INT UNSIGNED NOT NULL,
+country_id INT UNSIGNED NOT NULL,
+PRIMARY KEY (movie_country_id), 
+FOREIGN KEY (movie_id) REFERENCES movie (movie_id)
+ON DELETE NO ACTION ON UPDATE NO ACTION,
+FOREIGN KEY (country_id) REFERENCES country (country_id)
+ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE = INNODB;
+
+#Create language table
+CREATE TABLE language (
+language_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+language_1 VARCHAR(45) NOT NULL,
+language_2 VARCHAR(45) NOT NULL,
+language_3 VARCHAR(45) NOT NULL,
+language_4 VARCHAR(45) NOT NULL,
+language_5 VARCHAR(45) NOT NULL,
+language_6 VARCHAR(45) NOT NULL,
+language_7 VARCHAR(45) NOT NULL,
+language_8 VARCHAR(45) NOT NULL,
+language_9 VARCHAR(45) NOT NULL,
+PRIMARY KEY (language_id)
+);
+
+#Create movie_language table
+CREATE TABLE movie_language (
+movie_language_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+movie_id INT UNSIGNED NOT NULL,
+language_id INT UNSIGNED NOT NULL,
+PRIMARY KEY (movie_language_id),
+FOREIGN KEY (movie_id) REFERENCES movie (movie_id)
+ON DELETE NO ACTION ON UPDATE NO ACTION,
+FOREIGN KEY (language_id) REFERENCES language (language_id)
+ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE = INNODB;
+
+
+
+
+#import movie.csv into mysql
+#make sure that the csv file is in the tmp folder in C:/ Drive to load the file properly
+LOAD DATA INFILE '/tmp/movie.csv'
+REPLACE INTO TABLE movie
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS
+;
+
+#import writer.csv into mysql
+#make sure that the csv file is in the tmp folder in C:/ Drive to load the file properly
+LOAD DATA INFILE '/tmp/writer.csv'
+REPLACE INTO TABLE writer
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS
+;
+
+#import director.csv into mysql
+#make sure that the csv file is in the tmp folder in C:/ Drive to load the file properly
+LOAD DATA INFILE '/tmp/director.csv'
+REPLACE INTO TABLE director
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS
+;
+
+#import actor.csv into mysql
+#make sure that the csv file is in the tmp folder in C:/ Drive to load the file properly
+LOAD DATA INFILE '/tmp/actor.csv'
+REPLACE INTO TABLE actor
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS
+;
+
+#import genre.csv into mysql
+#make sure that the csv file is in the tmp folder in C:/ Drive to load the file properly
+LOAD DATA INFILE '/tmp/genre.csv'
+REPLACE INTO TABLE genre
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS
+;
+
+#import language.csv into mysql
+#make sure that the csv file is in the tmp folder in C:/ Drive to load the file properly
+LOAD DATA INFILE '/tmp/language.csv'
+REPLACE INTO TABLE language
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS
+;
+
+#import country.csv into mysql
+#make sure that the csv file is in the tmp folder in C:/ Drive to load the file properly
+LOAD DATA INFILE '/tmp/country.csv'
+REPLACE INTO TABLE country
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS
+;
+
+
+
+
+#Let's say you want to retrieve all the movie titles from the table where metascore is less than 45.
+SELECT movie_title FROM movie WHERE (movie_metascore < 45)
+
+
+
+
+
+
+
+
+
+
